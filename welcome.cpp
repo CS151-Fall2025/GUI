@@ -19,16 +19,25 @@ Welcome::Welcome()
     // //set label
     mRules.setString("1. rulee 1\n2. rule 2\netc.\n");
     mRules.setPosition({10, 30});
-}
-state Welcome::handleInput(sf::RenderWindow& mWindow)
-{
 
+    mStart.setPosition(40, 600);
+    mStart.setSize(60, 20);
+    mStart.setString("Start");
 }
-state Welcome::update(sf::RenderWindow& mWindow)
+state Welcome::handleInput(sf::RenderWindow& window)
 {
-
+    if (mStart.handleInput(window)){
+        return GAME;
+    }
+    return WELCOME;
 }
-void Welcome::render(sf::RenderWindow& mWindow)
+state Welcome::update(sf::RenderWindow& window)
 {
-
+    mStart.update();
+}
+void Welcome::render(sf::RenderWindow& window)
+{
+    window.draw(mHeader);
+    window.draw(mRules);
+    window.draw(mStart);
 }

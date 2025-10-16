@@ -165,7 +165,7 @@ bool Button::handleInput(sf::Event& e, sf::RenderWindow& window)
     return false;
     
 }
-void Button::update(sf::Event& e, sf::RenderWindow& window)
+void Button::update()
 {
     switch (mBtnState)
     {

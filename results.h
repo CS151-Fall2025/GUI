@@ -13,8 +13,7 @@ public:
 
 
 private:
-    sf::Text mRules;
-    sf::Text mHeader;
+    sf::Text mResults;
     Button mPlayAgain;  
     Button mLeave;
 };
