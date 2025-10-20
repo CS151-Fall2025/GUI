@@ -5,6 +5,7 @@
 #include "play.h"
 #include "results.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Game
 {
@@ -15,12 +16,12 @@ public:
     void handleInput(sf::RenderWindow& mWindow);
     void update(double elapsedTime, sf::RenderWindow& mWindow);
     void render(sf::RenderWindow& mWindow);
-    bool isDone() const;
+    //bool isDone() const;
 
 private:
-    sf::RenderWindow mWindow;
-    bool mIsDone;
-    state mGameState;
+    //sf::RenderWindow mWindow;
+    // bool mIsDone;
+    State mGameState;
     Welcome mWelcomeScreen;
     Play mGame;
     Results mResults;

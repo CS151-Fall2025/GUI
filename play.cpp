@@ -1,31 +1,64 @@
 #include "play.h"
 Play::Play()
 {
-    mRestart.setPosition(40, 400);
-    mRestart.setSize(60, 20);
-    mRestart.setString("Restart");
+    mFrame.setSize(sf::Vector2f(580, 400));
+    mFrame.setPosition(sf::Vector2f(30, 20));
+    mFrame.setOutlineThickness(5);
+    mFrame.setOutlineColor(sf::Color::Red);
 
-    mRules.setPosition(500, 400);
-    mRules.setSize(60, 20);
-    mRules.setString("Rules");
+    mChery.setBondary(30, 20, 580, 400);
+
+    mRules.setPosition(sf::Vector2f(60, 450));
+    mRules.setSize(sf::Vector2f(60, 20));
+    mRules.setText("Rules");
+    mRules.setColorTextNormal(sf::Color::Blue);
+    
+    mRestart.setPosition(sf::Vector2f(220, 450));
+    mRestart.setSize(sf::Vector2f(60, 20));
+    mRestart.setText("Restart");
+    mRestart.setColorTextNormal(sf::Color::Blue);
+
+    mResults.setPosition(sf::Vector2f(420, 450));
+    mResults.setSize(sf::Vector2f(60, 20));
+    mResults.setText("Results");
+    mResults.setColorTextNormal(sf::Color::Blue);
+    
+    mExit.setText("Exit");
+    mExit.setPosition({580, 450});
+    mExit.setSize({60, 20});
+    mExit.setColorTextNormal(sf::Color::Blue);
 }
-state Play::handleInput(sf::RenderWindow& window)
+
+State Play::handleInput(sf::Event& e,  sf::RenderWindow& window)
 {
-    if (mRestart.handleInput(window)){
-        return GAME;
+    if (mRules.handleInput(e, window)){
+        return welcome;
     }
-    id (mRules.handleInput(window)){
-        return RULES;
+    if (mRestart.handleInput(e, window)){
+        return game;
     }
-    return GAME;
+    if (mResults.handleInput(e, window)){
+        return results;
+    }
+    if (mExit.handleInput(e, window)){
+        return quit;
+    }  
+    return game;
 }
-state Play::update(double elapsedTime, sf::RenderWindow& window)
+void Play::update(double elapsedTime, sf::RenderWindow& window)
 {
     mChery.update(elapsedTime, window);
+    mRules.update();
+    mRestart.update();
+    mResults.update();
+    mExit.update();
 }
 void Play::render(sf::RenderWindow& window)
 {
-    mChery.render();
-    mRestart.draw();
-    mRules.draw();
+    window.draw(mFrame);
+    mChery.render(window);
+    window.draw(mRules);
+    window.draw(mRestart);
+    window.draw(mResults);
+    window.draw(mExit);
 }

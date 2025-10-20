@@ -8,38 +8,51 @@ Results::Results()
     }
     mResults.setFont(mFont);
     //choose the font size based on button size (I choose half)
-    mHeader.setCharacterSize(60);
+    mResults.setCharacterSize(60);
     // //set label
-    mHeader.setString("Results");
+    mResults.setString("Results");
+
+    mRules.setPosition(sf::Vector2f(60, 450));
+    mRules.setSize(sf::Vector2f(60, 20));
+    mRules.setText("Play Again");
+    mRules.setColorTextNormal(sf::Color::Blue);
+    
+    mPlayAgain.setPosition(sf::Vector2f(320, 450));
+    mPlayAgain.setSize(sf::Vector2f(60, 20));
+    mPlayAgain.setText("Play Again");
+    mPlayAgain.setColorTextNormal(sf::Color::Blue);
 
 
-    mPlayAgain.setPosition(40, 600);
-    mPlayAgain.setSize(60, 20);
-    mPlayAgain.setString("Play Again");
+    mLeave.setPosition(sf::Vector2f(580, 450));
+    mLeave.setSize(sf::Vector2f(60, 20));
+    mLeave.setText("Quit");
+    mLeave.setColorTextNormal(sf::Color::Blue);
 
-    mLeave.setPosition(500, 600);
-    mLeave.setSize(60, 20);
-    mLeave.setString("Rules");
 }
-state Results::handleInput(sf::RenderWindow& window)
+State Results::handleInput(sf::Event& e,  sf::RenderWindow& window)
 {
-    if (mPlayAgain.handleInput(window)){
-        return GAME;
+    if (mPlayAgain.handleInput(e, window)){
+        return game;
     }
-    if (mLeave.handleInput(window)){
-        return WELCOME;
+    if (mRules.handleInput(e, window)){
+        return welcome;
     }
-    return RESULTS;
+    if (mLeave.handleInput(e, window)){
+        return quit;
+    }
+    return results;
 }
 
-state Results::update(sf::RenderWindow& window)
+void Results::update()
 {
+    mRules.update();
     mPlayAgain.update();
     mLeave.update();  
 }
-void Results::render(sf::RenderWindow& window);
+void Results::render(sf::RenderWindow& window)
 {
     window.draw(mResults);
+    window.draw(mRules);
     window.draw(mPlayAgain);
     window.draw(mLeave);
 }

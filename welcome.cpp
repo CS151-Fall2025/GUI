@@ -20,18 +20,20 @@ Welcome::Welcome()
     mRules.setString("1. rulee 1\n2. rule 2\netc.\n");
     mRules.setPosition({10, 30});
 
-    mStart.setPosition(40, 600);
-    mStart.setSize(60, 20);
-    mStart.setString("Start");
+    mStart.setText("Start");
+    mStart.setPosition({580, 450});
+    mStart.setSize({60, 20});
+    mStart.setColorTextNormal(sf::Color::Blue);
+    //mStart.setColor(sf::Color(255,255,0));
 }
-state Welcome::handleInput(sf::RenderWindow& window)
+State Welcome::handleInput(sf::Event& e, sf::RenderWindow& window)
 {
-    if (mStart.handleInput(window)){
-        return GAME;
+    if (mStart.handleInput(e, window)){
+        return game;
     }
-    return WELCOME;
+    return welcome;
 }
-state Welcome::update(sf::RenderWindow& window)
+void Welcome::update()
 {
     mStart.update();
 }

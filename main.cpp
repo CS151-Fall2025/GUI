@@ -22,8 +22,9 @@ int main()
    
     sf::Clock clock; 
 
-    while(!game.isDone())
+    while(window.isOpen())
     {
+//std::cout<<"Starting while loop"<<std::endl;
         float dt=clock.restart().asSeconds();
         game.handleInput(window);
         game.update(dt, window);

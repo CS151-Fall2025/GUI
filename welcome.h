@@ -7,8 +7,8 @@ class Welcome
 {
 public:
     Welcome();
-    state handleInput(sf::RenderWindow& mWindow);
-    state update(sf::RenderWindow& mWindow);
+    State handleInput(sf::Event& e,  sf::RenderWindow& mWindow);
+    void update();
     void render(sf::RenderWindow& mWindow);
 
 

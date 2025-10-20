@@ -8,8 +8,8 @@ class Play
 {
 public:
     Play();
-    state handleInput(sf::RenderWindow& window);
-    state update(double elapsedTime, sf::RenderWindow& window);
+    State handleInput(sf::Event& e,  sf::RenderWindow& window);
+    void update(double elapsedTime, sf::RenderWindow& window);
     void render(sf::RenderWindow& window);
 
 
@@ -17,6 +17,9 @@ private:
     Cherry mChery;
     Button mRestart;  
     Button mRules;
+    Button mResults;
+    Button mExit;
+    sf::RectangleShape mFrame;
 };
 
 #endif

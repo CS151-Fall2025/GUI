@@ -9,14 +9,15 @@ public:
 
     void update(double elapsedTime, sf::RenderWindow& window);
     void render(sf::RenderWindow& window);
-    void setBondary(int topLeft, int buttom);
+    void setBondary(int xPosition, int yPosition, int width, int hight);
 
 private:
-    bool mIsDone;
 
     sf::Texture mTextureTile;
     sf::CircleShape mCherryPlant;
     sf::Vector2f mIncrement;
+    sf::Vector2i mPosition;
+    sf::Vector2i mSize;
 
     void moveCherry(double elapsedTime, sf::RenderWindow& window);
    
